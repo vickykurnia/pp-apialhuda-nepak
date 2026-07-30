@@ -1,6 +1,6 @@
 import { ProductCard } from "../components/ui/cards-1";
 import { AnimatedMarqueeHero } from "../components/ui/hero-3";
-import { SekolahModal } from "../components/ui/SekolahModal";
+import { SekolahModal } from "../components/ui/sekolahmodal";
 import { GaleriVideoGrid } from "../components/ui/GaleriVideo";
 import GaleriFotoHover from "../components/ui/GaleriFotoHover";
 import { FocusRail } from "../components/ui/focus-rail";
