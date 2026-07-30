@@ -1,0 +1,179 @@
+/* ====================================================================
+   CAROUSEL BERITA TERBARU - Pondok Pesantren API Al-Huda Nepak
+   ====================================================================
+   Catatan:
+   - Semua rule di-scope di bawah .berita-terbaru supaya TIDAK bentrok
+     dengan CSS lain di project (mis. Bootstrap atau style.css kamu).
+   - Variabel warna bisa disesuaikan ke tema pondok (hijau/emas dsb).
+   ==================================================================== */
+
+.berita-terbaru {
+  --transition-duration: 0.6s;
+  --carousel-bg: #111;
+  --carousel-accent: #2e7d32; /* hijau khas islami, ganti sesuai tema */
+
+  width: 100%;
+  padding: 2rem 1rem;
+  font-family: "Segoe UI", sans-serif;
+  color: #fff;
+  background: var(--carousel-bg);
+}
+
+.berita-terbaru .main {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.berita-terbaru .carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  height: 70vh;
+  min-height: 380px;
+}
+
+.berita-terbaru .slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all var(--transition-duration) ease-in-out;
+  display: flex;
+  align-items: flex-end;
+}
+
+.berita-terbaru .slide.active {
+  opacity: 1;
+  transform: translateX(0);
+  z-index: 1;
+}
+
+.berita-terbaru .slide.exit-left {
+  transform: translateX(-100%);
+}
+
+.berita-terbaru .slide.exit-right {
+  transform: translateX(100%);
+}
+
+.berita-terbaru .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.1)
+  );
+  z-index: 0;
+}
+
+.berita-terbaru .slide-content {
+  padding: 2rem;
+  z-index: 2;
+  max-width: 700px;
+  margin-bottom: 30px;
+}
+
+.berita-terbaru .slide-content h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.berita-terbaru .slide-content h1 a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.berita-terbaru .slide-content p {
+  font-size: 1rem;
+  color: #ddd;
+  margin-bottom: 1rem;
+}
+
+.berita-terbaru .slide-content .author {
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+.berita-terbaru .controls {
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.berita-terbaru .dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.berita-terbaru .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.berita-terbaru .dot.active {
+  width: 32px;
+  background-color: var(--carousel-accent);
+}
+
+.berita-terbaru .arrows {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.berita-terbaru .arrow-btn {
+  padding: 0.5rem 0.8rem;
+  border-radius: 12px;
+  border: 0.5px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.berita-terbaru .arrow-btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+  .berita-terbaru .slide-content {
+    padding: 1.5rem;
+  }
+
+  .berita-terbaru .slide-content h1 {
+    font-size: 1.3rem;
+  }
+
+  .berita-terbaru .slide-content p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .berita-terbaru .slide-content h1 {
+    font-size: 1.1rem;
+  }
+
+  .berita-terbaru .slide-content p {
+    display: none;
+  }
+}
