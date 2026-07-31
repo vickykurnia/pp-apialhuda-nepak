@@ -17,19 +17,36 @@ export function LoginForm({ className, ...props }) {
     setIsLoading(true);
 
     try {
-      // PERBAIKAN: Mengarah langsung ke endpoint otentikasi backend yang benar (/api/auth/login)
-      const response = await fetch("http://localhost:5000/api/auth/login", { 
+      const response = await fetch("http://localhost:5000/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         // KUNCI: Nilai input string 'email' dikirim sebagai 'username' ke database backend
         body: JSON.stringify({ username: email, password })
       });
-      
+
+      const data = await response.json();
+
       if (response.ok) {
-        alert("Login Berhasil!");
-        window.location.href = "/dashboard"; // Mengarahkan ke rute panel admin dashboard
+        // PERBAIKAN: simpan token SEBELUM redirect, ini yang tadinya hilang
+        // sehingga ProtectedRoute selalu menganggap belum login.
+        // Sesuaikan "data.token" jika nama field dari backend berbeda.
+        const token = data.token || data.access_token || data.accessToken;
+
+        if (!token) {
+          console.error("Response login tidak mengandung token:", data);
+          setError("Login berhasil tapi token tidak ditemukan pada response server.");
+          setIsLoading(false);
+          return;
+        }
+
+        localStorage.setItem("token", token);
+        if (data.user) {
+          localStorage.setItem("user", JSON.stringify(data.user));
+        }
+
+        window.location.href = "/dashboard";
       } else {
-        setError("Username atau Password salah.");
+        setError(data.message || "Username atau Password salah.");
       }
     } catch (err) {
       setError("Gagal terhubung ke server backend API.");
@@ -39,7 +56,7 @@ export function LoginForm({ className, ...props }) {
   };
 
   return (
-    <div className={cn("flex min-h-[700px] w-full bg-white text-gray-900", className)} {...props}>
+    <div className={cn("flex min-h-[700px] w-full bg-white text-gray-900", className)}>
       {/* Sisi Kiri - Gambar Banner Sesuai Tampilan Sebelumnya */}
       <div className="w-full hidden md:block">
         <img 

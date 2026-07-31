@@ -5,8 +5,8 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Pendaftaran from './pages/Pendaftaran';
 import ProfilLengkap from './pages/ProfilLengkap';
+import PendaftaranPage from './pages/PendaftaranPage'; 
 
-// 🔒 Komponen Pembatas Akses (Protected Route)
 const ProtectedRoute = ({ children }) => {
   // Cek apakah ada token login di localStorage
   const token = localStorage.getItem('token'); 
@@ -30,8 +30,11 @@ function App() {
         {/* Halaman Login (Publik) */}
         <Route path="/login" element={<Login />} />
 
-        {/* Halaman Pendaftaran Online (Publik) */}
+        {/* Halaman Info Pendaftaran Online (Publik) */}
         <Route path="/pendaftaran" element={<Pendaftaran />} />
+
+        {/* ➕ Halaman Formulir Input Pendaftaran Santri Baru (Publik) */}
+        <Route path="/form-pendaftaran" element={<PendaftaranPage />} />
 
         {/* Halaman Profil Lengkap Pondok (Publik) */}
         <Route path="/profil-lengkap" element={<ProfilLengkap />} />

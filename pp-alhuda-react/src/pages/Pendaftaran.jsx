@@ -80,7 +80,7 @@ function Pendaftaran() {
         </div>
       </section>
 
-      {/* ALUR PENDAFTARAN — penomoran di sini masuk akal karena memang urutan langkah */}
+      {/* ALUR PENDAFTARAN */}
       <section className="py-20 bg-white w-full">
         <div className="w-full mx-auto px-6 max-w-6xl">
           <h2 className="text-2xl sm:text-3xl font-bold text-emerald-950 mb-2 text-center font-serif">
@@ -89,7 +89,6 @@ function Pendaftaran() {
           <p className="text-center text-gray-500 text-sm mb-14">Empat langkah, dari formulir sampai pengumuman.</p>
 
           <div className="relative">
-            {/* garis penghubung, hanya terlihat di layar besar — menegaskan ini benar sebuah urutan */}
             <div className="hidden lg:block absolute top-5 left-[12.5%] right-[12.5%] h-px bg-stone-200"></div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
               {alurPendaftaran.map((item) => (
@@ -106,7 +105,7 @@ function Pendaftaran() {
         </div>
       </section>
 
-      {/* PERSYARATAN — daftar sederhana, tanpa kotak ikon berulang */}
+      {/* PERSYARATAN */}
       <section className="py-20 bg-stone-100/60 w-full border-y border-stone-200/60">
         <div className="w-full mx-auto px-6 max-w-3xl">
           <h2 className="text-2xl sm:text-3xl font-bold text-emerald-950 mb-10 text-center font-serif">
@@ -160,16 +159,17 @@ function Pendaftaran() {
             langsung melalui WhatsApp jika ada pertanyaan.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto">
-            <a
-              href="https://forms.gle/ganti-dengan-link-formulir-psb"
-              target="_blank"
-              rel="noreferrer"
+            
+            {/* LINK MENGARAH KE FORMULIR INPUTAN */}
+            <Link
+              to="/form-pendaftaran"
               className="flex-1 inline-flex items-center justify-center gap-2.5 bg-amber-500 hover:bg-amber-400 text-emerald-950 font-bold py-3.5 px-8 rounded-full transition-colors shadow-sm text-sm"
             >
               <i className="fas fa-file-signature text-xs"></i> Isi Formulir Online
-            </a>
+            </Link>
+
             <a
-              href="https://wa.me/6281234567890?text=Assalamu%27alaikum%2C%20saya%20ingin%20bertanya%20tentang%20PSB"
+              href="https://wa.me/6285643484123?text=Assalamu%27alaikum%2C%20saya%20ingin%20bertanya%20tentang%20PSB"
               target="_blank"
               rel="noreferrer"
               className="flex-1 inline-flex items-center justify-center gap-2.5 bg-[#0d6e40] hover:bg-emerald-800 text-white font-bold py-3.5 px-8 rounded-full transition-colors shadow-sm text-sm"
